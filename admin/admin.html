@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - Leadsite</title>
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+  <div id="login-view" class="login-view hidden">
+    <form class="login-box" id="login-form">
+      <div class="logo">L</div>
+      <h1>Welcome back</h1>
+      <p class="sub">Sign in to your dashboard</p>
+      <label>Username</label>
+      <input type="text" id="login-user" autocomplete="username">
+      <label>Password</label>
+      <input type="password" id="login-pass" autocomplete="current-password">
+      <p class="error" id="login-error"></p>
+      <button type="submit">Sign In</button>
+    </form>
+  </div>
+
+  <div id="app-view" class="hidden">
+    <div class="layout">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="logo">L</div>
+          <div>
+            <h1>Leadsite</h1>
+            <span>Admin</span>
+          </div>
+        </div>
+        <nav class="tabs">
+          <button class="tab active" data-tab="overview"><span class="tab-ico">◉</span>Overview</button>
+          <button class="tab" data-tab="content"><span class="tab-ico">✎</span>Content Editor</button>
+          <button class="tab" data-tab="orders"><span class="tab-ico">▤</span>Orders</button>
+          <button class="tab" data-tab="visits"><span class="tab-ico">◎</span>Visits</button>
+        </nav>
+        <div class="sidebar-footer">
+          <span class="sidebar-view">Admin View</span>
+          <button id="logout-btn" class="sidebar-logout">Logout</button>
+        </div>
+      </aside>
+
+      <main class="content">
+
+      <section id="tab-overview" class="tab-panel">
+        <div class="cards">
+          <div class="card"><div class="card-top"><span class="card-ico">◉</span></div><span class="card-num" id="ov-visits">0</span><span class="card-label">Total Visits</span></div>
+          <div class="card"><div class="card-top"><span class="card-ico">●</span></div><span class="card-num" id="ov-today">0</span><span class="card-label">Visits Today</span></div>
+          <div class="card"><div class="card-top"><span class="card-ico">▦</span></div><span class="card-num" id="ov-week">0</span><span class="card-label">Visits 7 Days</span></div>
+          <div class="card"><div class="card-top"><span class="card-ico">◎</span></div><span class="card-num" id="ov-unique">0</span><span class="card-label">Unique IPs</span></div>
+          <div class="card"><div class="card-top"><span class="card-ico">▤</span></div><span class="card-num" id="ov-orders">0</span><span class="card-label">Total Orders</span></div>
+          <div class="card"><div class="card-top"><span class="card-ico">✓</span></div><span class="card-num" id="ov-orders-today">0</span><span class="card-label">Orders Today</span></div>
+          <div class="card"><div class="card-top"><span class="card-ico">%</span></div><span class="card-num" id="ov-conversion">0%</span><span class="card-label">Conversion Rate</span></div>
+        </div>
+
+        <h2>Traffic &amp; Conversion - Last 14 Days</h2>
+        <div class="chart-box"><canvas id="chart"></canvas></div>
+
+        <div class="two-col">
+          <div class="panel">
+            <h2>Pages</h2>
+            <div id="pages-list"></div>
+          </div>
+          <div class="panel">
+            <h2>Top Locations</h2>
+            <table class="data-table">
+              <thead><tr><th>Location</th><th>Visits</th></tr></thead>
+              <tbody id="locations-body"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="two-col">
+          <div class="panel">
+            <h2>Top Referrers</h2>
+            <table class="data-table">
+              <thead><tr><th>Referrer</th><th>Visits</th></tr></thead>
+              <tbody id="referrers-body"></tbody>
+            </table>
+          </div>
+          <div class="panel">
+            <h2>Top Ad Sources (UTM)</h2>
+            <table class="data-table">
+              <thead><tr><th>Source</th><th>Visits</th></tr></thead>
+              <tbody id="sources-body"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h2>Top Campaigns</h2>
+          <table class="data-table">
+            <thead><tr><th>Campaign</th><th>Visits</th></tr></thead>
+            <tbody id="campaigns-body"></tbody>
+          </table>
+        </div>
+
+        <div class="panel">
+          <h2>Data Backup</h2>
+          <p class="hint">
+            Download a copy of all your data (content, orders, visits, admin login).
+            If your host wipes storage on restart (e.g. Render free tier), re-upload your backup afterwards.
+          </p>
+          <div class="content-controls">
+            <button id="backup-btn">Download Backup</button>
+            <button id="restore-btn" class="ghost-btn">Restore from Backup…</button>
+            <input type="file" id="restore-file" accept=".json,application/json" hidden>
+          </div>
+        </div>
+      </section>
+
+      <section id="tab-content" class="tab-panel hidden">
+        <div class="content-controls editor-top">
+          <select id="content-page">
+            <option value="index">Index (Lead) Page</option>
+            <option value="sales">Sales Page</option>
+          </select>
+          <a id="open-live" class="btn-link" href="/" target="_blank" rel="noopener">Open Live Page ↗</a>
+          <span class="flex-spacer"></span>
+          <span class="save-status" id="content-status"></span>
+          <button id="content-save">Save &amp; Publish</button>
+        </div>
+
+        <div class="editor-toolbar">
+          <button class="tool" data-insert="h2">H2</button>
+          <button class="tool" data-insert="p">P</button>
+          <button class="tool" data-insert="img">Image</button>
+          <button class="tool" data-insert="cta">CTA Button</button>
+          <button class="tool" data-insert="testimonial">Testimonial</button>
+          <button class="tool" data-insert="product">Product Box</button>
+          <button class="tool" data-insert="form">Order Form</button>
+          <button class="tool" data-insert="call">Call / WhatsApp</button>
+          <button class="tool" data-insert="divider">Divider</button>
+          <span class="flex-spacer"></span>
+          <button class="tool" id="undo-btn" title="Undo">↶</button>
+          <button class="tool" id="redo-btn" title="Redo">↷</button>
+        </div>
+
+        <div class="editor-workspace">
+          <div class="editor-pane" id="editor-pane">
+            <div class="pane-head"><span>HTML Editor</span><span class="pane-sub" id="editor-count">0 chars</span></div>
+            <textarea id="content-editor" class="content-editor" spellcheck="false"></textarea>
+          </div>
+          <div class="editor-pane">
+            <div class="pane-head"><span>Live Preview</span><span class="pane-sub">auto-updates</span></div>
+            <iframe id="preview-frame" class="preview-frame" sandbox="allow-scripts"></iframe>
+          </div>
+        </div>
+
+        <div class="editor-statusbar">
+          <span id="autosave-status" class="autosave-status"></span>
+          <span class="flex-spacer"></span>
+          <span class="hint">Drag an image into the editor or paste (Ctrl+V) to upload + insert. Ctrl/Cmd+S to save.</span>
+        </div>
+      </section>
+
+      <div id="image-modal" class="modal hidden">
+        <div class="modal-box">
+          <div class="modal-head">
+            <h3>Insert Image</h3>
+            <button id="modal-close" class="modal-close">×</button>
+          </div>
+          <div class="modal-import">
+            <label class="upload-btn" id="upload-label">
+              <input type="file" id="upload-file" accept="image/*" hidden>
+              <span id="upload-text">Upload from PC</span>
+            </label>
+            <input type="url" id="import-url" placeholder="https://example.com/image.jpg" spellcheck="false">
+            <button id="import-btn">Download URL</button>
+            <button id="insert-url-btn" class="ghost">Insert URL only</button>
+            <span id="import-status" class="import-status"></span>
+          </div>
+          <div class="image-grid" id="image-grid"></div>
+        </div>
+      </div>
+
+      <section id="tab-orders" class="tab-panel hidden">
+        <div class="content-controls">
+          <h2>Orders</h2>
+          <a id="export-orders" class="btn-link" href="/api/admin/export/orders">Export CSV</a>
+          <button id="refresh-orders">Refresh</button>
+        </div>
+        <table class="data-table full">
+          <thead>
+            <tr>
+              <th>ID</th><th>Date</th><th>Name</th><th>Phone</th><th>Alt Phone</th><th>Number</th>
+              <th>Address</th><th>Qty</th><th>Location</th><th>Referrer</th><th>Source</th>
+            </tr>
+          </thead>
+          <tbody id="orders-body"></tbody>
+        </table>
+      </section>
+
+      <section id="tab-visits" class="tab-panel hidden">
+        <div class="content-controls">
+          <h2>Recent Visits</h2>
+          <a id="export-visits" class="btn-link" href="/api/admin/export/visits">Export CSV</a>
+          <button id="refresh-visits">Refresh</button>
+        </div>
+        <table class="data-table full">
+          <thead>
+            <tr>
+              <th>ID</th><th>Date</th><th>Page</th><th>IP</th><th>Location</th>
+              <th>Referrer</th><th>Source</th><th>Campaign</th><th>Device</th>
+            </tr>
+          </thead>
+          <tbody id="visits-body"></tbody>
+        </table>
+      </section>
+
+    </main>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"><span class="tick">✓</span><span id="toast-msg"></span></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/codemirror@5.65.16/lib/codemirror.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/codemirror@5.65.16/theme/material-darker.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/codemirror@5.65.16/lib/codemirror.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/codemirror@5.65.16/mode/xml/xml.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/codemirror@5.65.16/mode/htmlmixed/htmlmixed.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/codemirror@5.65.16/mode/javascript/javascript.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/codemirror@5.65.16/mode/css/css.min.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>

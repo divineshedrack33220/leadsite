@@ -1,0 +1,19 @@
+{
+  "name": "leadsite",
+  "version": "1.0.0",
+  "description": "Lead page + sales page with Node.js backend, analytics and admin dashboard",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cloudinary": "^2.10.0",
+    "dotenv": "^17.4.2",
+    "express": "^4.19.2",
+    "geoip-lite": "^1.4.10",
+    "mongodb": "^7.5.0",
+    "multer": "^2.2.0"
+  }
+}

@@ -1,14 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Happy Family Manpower Syrup - Special Offer</title>
-  <link rel="stylesheet" href="sales.css">
-</head>
-<body>
-  <main class="sales-page">
+const bcrypt = require("bcryptjs");
+const store = require("./store");
 
+const INDEX_CONTENT = `
+    <img src="images/hero.jpg" alt="Small gbola natural solution" class="hero-image">
+
+    <div class="banner">
+      <h1 class="headline">
+        A Natural Way To Get Rid Of Small Gbola, 1 Minute Knacking Problems Without Side Effect
+      </h1>
+
+      <p class="body-text">
+        You See, I Want Us To Discuss Man To Man
+      </p>
+
+      <p class="body-text">
+        Here Is Not Appropriate, So Let's Go To The Other Side
+      </p>
+
+      <p class="body-text">
+        Enter your text here&hellip;
+      </p>
+    </div>
+
+    <img src="images/hero.gif" alt="Animated image" class="gif-image">
+
+    <a href="sales.html" class="access-btn" id="access-btn">
+      Get Instant Access
+    </a>
+
+    <a href="sales.html" class="bottom-link">
+      <img src="images/bottom.jpg" alt="Bottom image" class="bottom-image">
+    </a>
+
+    <img src="images/extra.jpg" alt="Extra image" class="extra-image">
+`;
+
+const SALES_CONTENT = `
     <header class="top-banner">
       <p class="top-banner-text">HURRY!!! THIS OFFER ENDS IN</p>
       <div class="countdown" id="countdown">
@@ -428,9 +455,26 @@
         DISCLAIMER: This site is not part of the Facebook, Facebook Inc. website nor is it endorsed by Facebook. FACEBOOK is a registered trademark of Facebook Inc. Copyright Fulfilledmart 2024. All rights reserved.
       </p>
     </footer>
+`;
 
-  </main>
+function seed() {
+  const existingIndex = store.getSetting("content:index", null);
+  const existingSales = store.getSetting("content:sales", null);
 
-  <script src="sales.js"></script>
-</body>
-</html>
+  if (existingIndex === null) store.setSetting("content:index", INDEX_CONTENT);
+  if (existingSales === null) store.setSetting("content:sales", SALES_CONTENT);
+
+  const adminUser = store.getSetting("admin:user", null);
+  if (!adminUser) {
+    const username = process.env.ADMIN_USER || "admin";
+    const password = process.env.ADMIN_PASS || "admin123";
+    store.setSetting("admin:user", username);
+    store.setSetting("admin:hash", bcrypt.hashSync(password, 10));
+    console.log("[seed] Admin account created:");
+    console.log(`[seed]   username: ${username}`);
+    console.log(`[seed]   password: ${password}`);
+    console.log("[seed]   CHANGE THIS!  (set ADMIN_USER / ADMIN_PASS env vars, then delete data/db.json)");
+  }
+}
+
+module.exports = { seed };

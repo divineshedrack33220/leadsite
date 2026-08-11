@@ -899,6 +899,25 @@ body {
   opacity: 0.9;
 }
 
+.want-img,
+.order-img,
+.order2-img,
+.order3-img,
+.buy-gif,
+.offer-gif {
+  cursor: pointer;
+}
+
+.want-img.clickable:active,
+.order-img.clickable:active,
+.order2-img.clickable:active,
+.order3-img.clickable:active,
+.buy-gif.clickable:active,
+.offer-gif.clickable:active {
+  transform: scale(0.98);
+  opacity: 0.9;
+}
+
 .want-img {
   display: block;
   max-width: 100%;
