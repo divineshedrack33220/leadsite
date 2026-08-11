@@ -1,0 +1,157 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: #ffffff;
+  color: #1a1a1a;
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 100vh;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 40px 24px;
+  gap: 32px;
+}
+
+.hero-image {
+  display: block;
+  width: 100%;
+  max-width: 640px;
+  height: auto;
+  object-fit: contain;
+  border-radius: 8px;
+  margin: 0 auto;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+}
+
+.banner {
+  background: #000;
+  color: #fff;
+  width: 100%;
+  max-width: 640px;
+  padding: 24px;
+  border-radius: 8px;
+  margin: 0 auto;
+}
+
+.headline {
+  font-size: clamp(1.6rem, 5vw, 2.6rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+.body-text {
+  font-size: clamp(1.1rem, 3.5vw, 1.35rem);
+  color: #fff;
+  font-weight: 400;
+  margin-bottom: 14px;
+}
+
+.body-text:last-child {
+  margin-bottom: 0;
+}
+
+.gif-image {
+  display: block;
+  width: 100%;
+  max-width: 240px;
+  height: auto;
+  margin: 0 auto;
+  border-radius: 8px;
+}
+
+.access-btn {
+  display: inline-block;
+  background: #1d6fe1;
+  color: #fff;
+  font-size: clamp(1.05rem, 3.5vw, 1.25rem);
+  font-weight: 700;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 18px 40px;
+  border-radius: 15px;
+  box-shadow: 0 4px 14px rgba(29, 111, 225, 0.35);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.access-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(29, 111, 225, 0.45);
+}
+
+.access-btn:active,
+.access-btn.pressed {
+  transform: translateY(1px) scale(0.98);
+  opacity: 0.9;
+}
+
+.bottom-link {
+  display: block;
+}
+
+.bottom-image {
+  display: block;
+  width: 100%;
+  max-width: 462px;
+  height: auto;
+  margin: 0 auto;
+  border-radius: 8px;
+}
+
+.extra-image {
+  display: block;
+  width: 100%;
+  max-width: 640px;
+  height: auto;
+  margin: 0 auto;
+  border-radius: 8px;
+}
+
+.cta {
+  display: inline-block;
+  background: #e11d1d;
+  color: #fff;
+  font-size: clamp(1.05rem, 3.5vw, 1.25rem);
+  font-weight: 700;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 18px 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 14px rgba(225, 29, 29, 0.35);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(225, 29, 29, 0.45);
+}
+
+.cta:active,
+.cta.pressed {
+  transform: translateY(1px) scale(0.98);
+  opacity: 0.9;
+}
