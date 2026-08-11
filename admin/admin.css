@@ -628,6 +628,15 @@ button {
   box-shadow: 0 6px 14px rgba(79, 110, 247, 0.15);
 }
 
+.content-controls button.danger-btn {
+  color: #dc2626;
+}
+
+.content-controls button.danger-btn:hover {
+  border-color: #dc2626;
+  box-shadow: 0 6px 14px rgba(220, 38, 38, 0.15);
+}
+
 .btn-link {
   color: var(--primary);
   font-weight: 700;

@@ -92,6 +92,12 @@ function removeSession(token) {
   mongo.removeSession(token);
 }
 
+function resetVisits() {
+  db.visits = [];
+  save();
+  mongo.resetVisits();
+}
+
 function setState(state) {
   db = {
     settings: (state && state.settings) || {},
@@ -106,4 +112,4 @@ function all() {
   return db;
 }
 
-module.exports = { load, isFresh, save, getSetting, setSetting, addVisit, addOrder, addSession, isValidSession, removeSession, all, setState };
+module.exports = { load, isFresh, save, getSetting, setSetting, addVisit, addOrder, addSession, isValidSession, removeSession, resetVisits, all, setState };

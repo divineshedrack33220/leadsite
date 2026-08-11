@@ -75,6 +75,15 @@ async function removeSession(token) {
   }
 }
 
+async function resetVisits() {
+  if (!enabled) return;
+  try {
+    await db.collection("visits").deleteMany({});
+  } catch (e) {
+    console.log("[mongo] resetVisits failed:", e.message);
+  }
+}
+
 async function registerImage(name, url) {
   if (!enabled) return;
   try {
@@ -204,5 +213,6 @@ module.exports = {
   pullSessions,
   lastSyncTs,
   pushState,
-  hasAnyData
+  hasAnyData,
+  resetVisits
 };

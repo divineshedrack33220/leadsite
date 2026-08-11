@@ -419,6 +419,11 @@ app.post("/api/admin/backup/restore", (req, res) => {
   res.json({ ok: true, counts: { visits: cleaned.visits.length, orders: cleaned.orders.length } });
 });
 
+app.post("/api/admin/reset-visits", (req, res) => {
+  store.resetVisits();
+  res.json({ ok: true });
+});
+
 /* ------------------------- PAGES ------------------------- */
 
 app.get("/", (req, res) => {

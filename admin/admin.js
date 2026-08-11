@@ -740,6 +740,17 @@
     reader.readAsText(file);
   });
 
+  $("reset-stats-btn").addEventListener("click", function () {
+    if (!window.confirm("Reset ALL visit statistics? This clears charts and top lists. Your orders are kept. This cannot be undone.")) return;
+    api("/api/admin/reset-visits", { method: "POST" }).then(function () {
+      showToast("Statistics reset");
+      loadStats();
+      loadVisits();
+    }).catch(function () {
+      showToast("Reset failed");
+    });
+  });
+
   /* ---------- orders ---------- */
 
   $("refresh-orders").addEventListener("click", loadOrders);
