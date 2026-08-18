@@ -386,7 +386,7 @@
     call:
       '<div class="contact-lines">' +
       '<p class="contact">CALLS ONLY: <a href="tel:+2348133885432">+234 813 388 5432</a></p>' +
-      '<p class="contact">CHAT ON WHATSAPP: <a href="https://wa.me/2348132544149">+234 813 254 4149</a></p></div>',
+      '<p class="contact">CHAT ON WHATSAPP: <a href="https://wa.me/2349110850890">+234 911 085 0890</a></p></div>',
     divider: '<hr class="divider">'
   };
 

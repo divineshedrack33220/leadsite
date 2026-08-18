@@ -22,8 +22,8 @@ body {
 }
 
 .top-banner {
-  background: #e11d1d;
-  color: #fff;
+  background: #ffd400;
+  color: #000;
   text-align: center;
   padding: 18px 12px;
   border-radius: 0 0 10px 10px;
@@ -788,7 +788,7 @@ body {
 .green-promo {
   font-size: clamp(1.8rem, 6.5vw, 2.8rem);
   font-weight: 900;
-  color: #ffd400;
+  color: #fff;
   margin-bottom: 16px;
 }
 
